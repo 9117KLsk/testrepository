@@ -1,52 +1,46 @@
-//Una cadena es iterable
-//const iterable1 = "Hola Mundo";
-/* const  iterable1 = new Map([['Nombre','Jon'], ['Edad', 35]]);
-const iterador1 = iterable1[Symbol.iterator]();
-console.log(iterable1);
-console.log(iterador1);
+function* iterable() {
+    yield 'Hola';
+    console.log('Hola Consola');
+    yield 'Hola2';
+    console.log('Seguimos con más instrucciones de nuestro código');
+    yield 'Hola3';
+    yield 'Hola4';
+}
 
-console.log(iterador1.next());
-console.log(iterador1.next());
-console.log(iterador1.next());
-console.log(iterador1.next());
-console.log(iterador1.next());
-console.log(iterador1.next());
-console.log(iterador1.next());
-console.log(iterador1.next());
-console.log(iterador1.next());
-console.log(iterador1.next());
+let iterador = iterable();
 
+/*console.log(iterador.next());
+console.log(iterador.next());
+console.log(iterador.next());
+console.log(iterador.next());
+console.log(iterador.next());*/
 
-let next = iterador1.next();
+ for(let y of iterador) {
+     console.log(y);
+}
 
-while (!next.done) {
-    console.log(next.value);
-    next = iterador1.next();
-}  
+const arr = [...iterable()];
+    console.log(arr);
 
+function cuadrado(valor){
+    setTimeout(()=>{
+       return console.log({valor, resultado:valor*valor});
+    },Math.random()*1000);
 
+}
 
+function* generador() {
+    console.log('Inicia Generator');
+    yield cuadrado(0);
+    yield cuadrado(1);
+    yield cuadrado(2);
+    yield cuadrado(3);
+    yield cuadrado(4);
+    yield cuadrado(5);
+    console.log('Termina Generator');
+}
 
-Un arreglo es iterable
-const iterable2 = [1,2,3,4,5];
-const iterable2 = [1,2,3,4,5]
-Accedemos al iterador del iterable */
-const iterable2 = new Set([1,1,2,2,2,2,3,4,5,5,5]);
-const iterador2 = iterable2[Symbol.iterator]();
-
-console.log(iterable2);
-console.log(iterador2);
-
-/*console.log(iterador2.next());
-console.log(iterador2.next());
-console.log(iterador2.next());
-console.log(iterador2.next());
-console.log(iterador2.next());
-*/
-
-let next2 = iterador2.next();
-
-while (!next2.done) {
-    console.log(next2.value);
-    next2 = iterador2.next();
+let gen = generador();
+for(let y of gen) {
+    console.log(y);
 } 
